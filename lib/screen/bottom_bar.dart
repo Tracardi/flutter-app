@@ -1,6 +1,7 @@
 import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:tracardi/screen/home.dart';
+import 'package:tracardi/screen/login/login_screen.dart';
 
 class BottomBar extends StatefulWidget {
   const BottomBar({super.key});
@@ -15,7 +16,7 @@ class _BottomBarState extends State<BottomBar> {
     HomeScreen(),
     const Text("Search"),
     const Text("Graph"),
-    const Text("Profile"),
+    LoginScreen(),
   ];
 
   void _onItemClick(int index) {
