@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.tracardi">
    <application
-        android:label="tracardi"
-        android:name="${applicationName}"
+        android:label="Tracardi"
+        android:name="Tracardi"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../service/login_secure_storage_service.dart';
 
 const Color _signInButtonColor = Color.fromARGB(255, 213, 164, 25);
+const Color _tracardiBlueColor = Color.fromARGB(255, 4, 92, 179);
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -36,18 +37,22 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 4, 92, 179),
-      body: Column(children: [
-        Center(child: Image.asset('assets/tracardi_logo.png')),
-        serverField(),
-        const SizedBox(height: 10.0),
-        emailField(),
-        const SizedBox(height: 10.0),
-        passwordField(),
-        const SizedBox(height: 40.0),
-        signInButton()
-      ]),
+    return Container(
+      color: _tracardiBlueColor,
+      child: SafeArea(
+          child: Scaffold(
+        backgroundColor: _tracardiBlueColor,
+        body: Column(children: [
+          Center(child: Image.asset('assets/tracardi_logo.png')),
+          serverField(),
+          const SizedBox(height: 10.0),
+          emailField(),
+          const SizedBox(height: 10.0),
+          passwordField(),
+          const SizedBox(height: 40.0),
+          signInButton()
+        ]),
+      )),
     );
   }
 
