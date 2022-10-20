@@ -27,7 +27,6 @@ class Authorization {
     }).timeout(const Duration(seconds: 10));
 
     if (response.statusCode == HttpStatus.ok) {
-      print("Auth!");
       return AuthorizationModel.fromJson(jsonDecode(response.body));
     }
 
@@ -53,7 +52,6 @@ class Authorization {
     );
 
     if (response.statusCode == HttpStatus.ok) {
-      print("Logged out!");
       return true;
     } else {
       throw Exception('Internal error...');
