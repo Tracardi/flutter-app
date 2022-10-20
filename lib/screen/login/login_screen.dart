@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:tracardi/api/authorization.dart';
+import 'package:tracardi/service/login/login_secure_storage_service.dart';
 
-import '../../service/login_secure_storage_service.dart';
-
-const Color _signInButtonColor = Color.fromARGB(255, 213, 164, 25);
+const Color _signInButtonColor = Color.fromARGB(255, 130, 143, 187);
 const Color _tracardiBlueColor = Color.fromARGB(255, 4, 92, 179);
 
 class LoginScreen extends StatefulWidget {
@@ -115,8 +115,16 @@ class _LoginScreenState extends State<LoginScreen> {
           height: 50,
           child: ElevatedButton(
             onPressed: () async {
-              LoginSecureStorage.setLoginData(emailController.text,
+              await LoginSecureStorage.setLoginData(emailController.text,
                   passwordController.text, serverController.text);
+              var auth = await Authorization.login(
+                  emailController.text, passwordController.text);
+
+              if (auth.token.isEmpty) {
+                return;
+              } else {
+                await LoginSecureStorage.setLoginToken(auth.token);
+              }
             },
             style: ElevatedButton.styleFrom(
                 backgroundColor: _signInButtonColor,
