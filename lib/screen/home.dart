@@ -15,7 +15,7 @@ class HomeScreen extends StatelessWidget {
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
+                children: const [
                   Text('test'),
                   DateToggleButtons(),
                 ],
