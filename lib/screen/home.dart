@@ -8,18 +8,13 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFeeedf2),
-      body: PageView(children: [
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        backgroundColor: const Color(0xFFeeedf2),
+        body: SafeArea(
+          child: PageView(children: [
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
                 children: const [
-                  // Text('test'),
-                  // DateToggleButtons(),
-                  // LineChartEvent()
                   LineChartWidget(
                     nameChart: "Events",
                   ),
@@ -27,11 +22,9 @@ class HomeScreen extends StatelessWidget {
                     nameChart: "Instances",
                   ),
                 ],
-              )
-            ],
-          ),
-        )
-      ]),
-    );
+              ),
+            )
+          ]),
+        ));
   }
 }

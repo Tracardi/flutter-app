@@ -20,8 +20,8 @@ class _LineChartWidgetState extends State<LineChartWidget> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 200,
-      height: 200,
+      width: MediaQuery.of(context).size.width * 1,
+      height: MediaQuery.of(context).size.width * 0.6,
       child: Stack(
         children: <Widget>[
           Column(
@@ -41,7 +41,7 @@ class _LineChartWidgetState extends State<LineChartWidget> {
                           padding: const EdgeInsets.only(
                             right: 18,
                             left: 12,
-                            top: 24,
+                            top: 36,
                             bottom: 12,
                           ),
                           child: LineChart(
@@ -55,7 +55,7 @@ class _LineChartWidgetState extends State<LineChartWidget> {
                             style: const TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
-                                fontSize: 10),
+                                fontSize: 20),
                           ),
                         ),
                       ],
