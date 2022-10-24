@@ -49,4 +49,8 @@ class Endpoint {
   static Future<String> eventsByStatus() async {
     return "${await _serverURL()}/events/by_status";
   }
+
+  static Future<String> eventsHistogram() async {
+    return "${await _serverURL()}/event/select/histogram";
+  }
 }

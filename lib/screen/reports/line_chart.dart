@@ -116,7 +116,7 @@ class _LineChartWidgetState extends State<LineChartWidget> {
         border: Border.all(color: const Color(0xff37434d)),
       ),
       minX: 0,
-      maxX: 11,
+      maxX: 31,
       minY: 0,
       maxY: 10,
       lineBarsData: [
