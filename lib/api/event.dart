@@ -25,7 +25,7 @@ class Event {
     return 0;
   }
 
-  static Future<List<ReportsData>> getEventHistogram() async {
+  static Future<ReportsData> getEventHistogram() async {
     var token = await LoginSecureStorage.getLoginToken();
     var url = Uri.parse(await Endpoint.eventsHistogram());
     Map bodyData = {
@@ -45,10 +45,9 @@ class Event {
         },
         body: json.encode(bodyData));
 
-    List<ReportsData> result = [];
-    result = (json.decode("[${response.body}]") as List)
-        .map((e) => ReportsData.fromJson(e))
-        .toList();
+    final parsedJson = json.decode(response.body);
+
+    ReportsData result = ReportsData.fromJson(parsedJson);
 
     return result;
   }

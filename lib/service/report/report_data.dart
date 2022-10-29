@@ -1,35 +1,30 @@
 class ReportsData {
-  final List<dynamic> reports;
+  final int total;
+  final List<Report> result;
 
-  ReportsData({required this.reports});
+  ReportsData({required this.total, required this.result});
 
-  // factory JsonData.fromJson(Map<String, dynamic> parsedJson) {
-  //   return JsonData(reports: parsedJson['result']);
-  // }
-  factory ReportsData.fromJson(Map<String, dynamic> parsedJson) => ReportsData(
-      reports: List<Report>.from(
-          parsedJson["result"].map((x) => Report.fromJson(x))));
+  factory ReportsData.fromJson(Map<String, dynamic> parsedJson) {
+    final total = parsedJson['total'] as int;
+    final reportsData = parsedJson['result'] as List<dynamic>?;
+    final reports = reportsData != null
+        ? reportsData.map((reportData) => Report.fromJson(reportData)).toList()
+        : <Report>[];
+
+    return ReportsData(total: total, result: reports);
+  }
 }
 
 class Report {
   final String date;
-  //final String interval;
-  final int count;
+  final double? count;
 
-  Report(this.date, this.count);
+  Report({required this.date, this.count});
 
   factory Report.fromJson(Map<String, dynamic> parsedJson) {
-    return Report(parsedJson['date'], parsedJson['count']);
+    final date = parsedJson['date'] as String;
+    final count = parsedJson['count'] as double?;
+
+    return Report(date: date, count: count);
   }
 }
-
-  // factory ReportData.fromJson(Map<DateTime, int> json) {
-  //   return ReportData(json['date'] as DateTime, json['count'] as int);
-  // }
-
-
-// class ReportData {
-//   Map<DateTime, int> data;
-
-//   ReportData(this.data);
-// }

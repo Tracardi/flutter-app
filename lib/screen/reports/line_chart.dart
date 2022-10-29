@@ -1,5 +1,8 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:tracardi/api/event.dart';
+import 'package:intl/intl.dart';
+import 'package:tracardi/service/report/report_data.dart';
 
 class LineChartWidget extends StatefulWidget {
   final String nameChart;
@@ -15,7 +18,37 @@ class _LineChartWidgetState extends State<LineChartWidget> {
     const Color(0xff02d39a),
   ];
 
-  bool showAvg = false;
+  // Future<List<FlSpot>> flSpots() async {
+  //   var events = await Event.getEventHistogram();
+  //   events
+
+  //   List<FlSpot> spots;
+
+  //   events.forEach((element) {
+  //     spots.add(element.reports);
+  //   });
+  //   // .map((e) => FlSpot(
+  //   //    DateTime.parse(e.date)  // e.date = "2020-10-24"
+  //   //       .millisecondsSinceEpoch
+  //   //       .toDouble(),
+  //   //   e.value))
+  // }
+
+  List<FlSpot>? getChartData(ReportsData data) {
+    List<FlSpot> spotList = <FlSpot>[];
+    //var data = await Event.getEventHistogram();
+
+    for (var element in data.result) {
+      var wtf = FlSpot(
+          DateFormat("yy-MM-dd")
+              .parse(element.date)
+              .millisecondsSinceEpoch
+              .toDouble(),
+          element.count!);
+      spotList.add(wtf);
+    }
+    return spotList;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -121,15 +154,16 @@ class _LineChartWidgetState extends State<LineChartWidget> {
       maxY: 10,
       lineBarsData: [
         LineChartBarData(
-          spots: const [
-            FlSpot(0, 3),
-            FlSpot(2.6, 2),
-            FlSpot(4.9, 5),
-            FlSpot(6.8, 3.1),
-            FlSpot(8, 4),
-            FlSpot(9.5, 3),
-            FlSpot(11, 4),
-          ],
+          spots: spoty(Event.getEventHistogram()), // TODO
+          // spots: const [
+          //   FlSpot(0, 3),
+          //   FlSpot(2.6, 2),
+          //   FlSpot(4.9, 5),
+          //   FlSpot(6.8, 3.1),
+          //   FlSpot(8, 4),
+          //   FlSpot(9.5, 3),
+          //   FlSpot(11, 4),
+          // ],
           isCurved: false,
           gradient: LinearGradient(
             colors: gradientColors,
