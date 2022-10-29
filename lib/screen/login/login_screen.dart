@@ -1,6 +1,9 @@
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:tracardi/api/authorization.dart';
+import 'package:tracardi/api/event.dart';
 import 'package:tracardi/service/login/login_secure_storage_service.dart';
+import 'package:intl/intl.dart';
 
 const Color _signInButtonColor = Color.fromARGB(255, 130, 143, 187);
 const Color _tracardiBlueColor = Color.fromARGB(255, 4, 92, 179);
@@ -125,6 +128,11 @@ class _LoginScreenState extends State<LoginScreen> {
               } else {
                 await LoginSecureStorage.setLoginToken(auth.token);
               }
+
+              // var test = await Event.getEventHistogram();
+              // test.result.forEach((element) {
+              //   print("${element.date} : ${element.count}");
+              // });
             },
             style: ElevatedButton.styleFrom(
                 backgroundColor: _signInButtonColor,
